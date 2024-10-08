@@ -33,7 +33,7 @@ const kick = new Tone.MembraneSynth({
 const snare = new Tone.NoiseSynth({
     noise: { type: 'white' },
     envelope: {
-        attack: 0.001,
+        attack:  0.001,
         decay: 0.1,
         sustain: 0,
         release: 0.1
@@ -297,7 +297,7 @@ function predictWebcam() {
         ctx.strokeStyle = '#FF5733';
         ctx.lineWidth = 4;
         ctx.fillStyle = '#FF5733';
-        ctx.font = '18px Inter';
+        ctx.font = '15px Inter';
         for (let n = 0; n < predictions.length; n++) {
             if (predictions[n].score > 0.66) {
                 const [x, y, width, height] = predictions[n].bbox;
