@@ -1,102 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drum Detection System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>オブジェクト検出ドラムマシン</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="main-screen">
-            <div class="camera-container">
-                <div class="videoView" id="liveView">
-                    <video id="webcam" autoplay playsinline></video>
-                    <canvas id="canvas"></canvas>
-                </div>
-            </div>
-            <div class="drum-ui">
-                <div class="drum-controls">
-                    <div class="drum-control" id="kickControl">
-                        <div class="drum-knobs">
-                            <div class="knob-container">
-                                <div class="knob" id="kickKnob"></div>
-                                <label>Kick</label>
-                            </div>
-                            <div class="knob-container">
-                                <div class="knob randomness-knob" id="kickRandomnessKnob"></div>
-                                <label>Randomness</label>
-                            </div>
-                        </div>
-                        <div class="indicator-lamp"></div>
-                    </div>
-                    <div class="drum-control" id="snareControl">
-                        <div class="drum-knobs">
-                            <div class="knob-container">
-                                <div class="knob" id="snareKnob"></div>
-                                <label>Snare</label>
-                            </div>
-                            <div class="knob-container">
-                                <div class="knob randomness-knob" id="snareRandomnessKnob"></div>
-                                <label>Randomness</label>
-                            </div>
-                        </div>
-                        <div class="indicator-lamp"></div>
-                    </div>
-                    <div class="drum-control" id="hihatControl">
-                        <div class="drum-knobs">
-                            <div class="knob-container">
-                                <div class="knob" id="hihatKnob"></div>
-                                <label>Hi-hat</label>
-                            </div>
-                            <div class="knob-container">
-                                <div class="knob randomness-knob" id="hihatRandomnessKnob"></div>
-                                <label>Randomness</label>
-                            </div>
-                        </div>
-                        <div class="indicator-lamp"></div>
-                    </div>
-                    <div class="drum-control" id="tomControl">
-                        <div class="drum-knobs">
-                            <div class="knob-container">
-                                <div class="knob" id="tomKnob"></div>
-                                <label>Tom</label>
-                            </div>
-                            <div class="knob-container">
-                                <div class="knob randomness-knob" id="tomRandomnessKnob"></div>
-                                <label>Randomness</label>
-                            </div>
-                        </div>
-                        <div class="indicator-lamp"></div>
-                    </div>
-                </div>
-                <div class="control-panel">
-                    <div class="button-container">
-                        <button id="webcamButton" class="btn btn-primary">Start Camera</button>
-                        <button id="stopWebcamButton" class="btn btn-danger hidden">Stop</button>
-                        <button id="switchCameraButton" class="btn btn-secondary hidden">Switch Camera</button>
-                        <button id="refreshButton" class="btn btn-info hidden">Refresh</button>
-                    </div>
-                    <div class="volume-container">
-                        <label for="volumeSlider">Volume:</label>
-                        <input type="range" id="volumeSlider" min="-60" max="0" value="-10">
-                        <span id="volumeValue">-10 dB</span>
-                    </div>
-                </div>
-            </div>
+        <div id="cameraContainer">
+            <video id="camera" autoplay muted></video>
+            <canvas id="canvas"></canvas>
         </div>
-        <div class="sub-screen">
-            <div class="result-matrix" id="resultMatrix"></div>
-            <div class="console-container">
-                <h3>Detection Log</h3>
-                <div id="detectionConsole"></div>
+        <div id="detectionLabel"></div>
+        <div class="controls">
+            <div class="drum-selector">
+                <div class="part" data-part="kick">kick</div>
+                <div class="part" data-part="snare">snare</div>
+                <div class="part" data-part="hi-hat">hi-hat</div>
+                <div class="part" data-part="tom">tom</div>
+            </div>
+            <div class="slider-and-controls">
+                <div class="slider-container">
+                    <div class="icon turtle">🐢</div>
+                    <div class="slider-track">
+                        <div class="slider-fill"></div>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                        <div class="slider-knob"></div>
+                    </div>
+                    <div class="icon rabbit">🐰</div>
+                </div>
+                <div class="camera-controls">
+                    <button id="startCamera" class="icon-button"><span class="icon">📸</span></button>
+                    <button id="stopCamera" class="icon-button hidden"><span class="icon">⏹️</span></button>
+                    <button id="switchCamera" class="icon-button"><span class="icon">🔄</span></button>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
