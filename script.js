@@ -173,22 +173,9 @@ function playRandomDrum(detectedObjects) {
     }
 }
 
-startButton.addEventListener('click', function(event) {
-    event.preventDefault(); // デフォルト動作を防止
-    startCamera();
-});
-
-// ストップボタン
-stopButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    stopCamera();
-});
-
-// スイッチボタン
-switchButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    switchCamera();
-});
+startButton.addEventListener('click', startCamera);
+stopButton.addEventListener('click', stopCamera);
+switchButton.addEventListener('click', switchCamera);
 
 updateSlider(0);
 
