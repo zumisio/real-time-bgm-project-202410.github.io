@@ -137,10 +137,10 @@ async function detectObjects() {
             }
         });
         if (detectedObjects.length > 0) {
-           // detectionLabel.textContent = `検出されたオブジェクト: ${detectedObjects.join(', ')}`;// 非表示
+            detectionLabel.textContent = `検出されたオブジェクト: ${detectedObjects.join(', ')}`;
             playRandomDrum(detectedObjects);
         } else {
-           // detectionLabel.textContent = '検出されたオブジェクトはありません'; //
+            detectionLabel.textContent = '検出されたオブジェクトはありません';
         }
     } catch (error) {
         console.error('Object detection error:', error);
