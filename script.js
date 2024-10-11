@@ -79,10 +79,12 @@ async function startCamera() {
             }
         });
         video.srcObject = stream;
+        video.style.display = 'block';
+        canvas.style.display = 'block';
+
         video.onloadedmetadata = () => {
             video.play();
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            resizeCanvas();
             isDetecting = true;
             detectObjects();
         };
@@ -93,6 +95,30 @@ async function startCamera() {
         console.error('Failed to start camera:', err);
     }
 }
+
+function resizeCanvas() {
+    const videoAspectRatio = video.videoWidth / video.videoHeight;
+    const windowAspectRatio = window.innerWidth / window.innerHeight;
+
+    let canvasWidth, canvasHeight;
+
+    if (videoAspectRatio > windowAspectRatio) {
+        canvasHeight = window.innerHeight;
+        canvasWidth = canvasHeight * videoAspectRatio;
+    } else {
+        canvasWidth = window.innerWidth;
+        canvasHeight = canvasWidth / videoAspectRatio;
+    }
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+        // キャンバスの位置を調整してセンタリング
+        canvas.style.left = `${(window.innerWidth - canvasWidth) / 2}px`;
+        canvas.style.top = `${(window.innerHeight - canvasHeight) / 2}px`;
+}
+
+window.addEventListener('resize', resizeCanvas);
 
 function stopCamera() {
     if (stream) {
