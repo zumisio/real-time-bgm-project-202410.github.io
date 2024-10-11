@@ -7,11 +7,10 @@ body {
   
   .container {
     position: relative;
-    width: 98vw;  
-    height: 98vh; 
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    margin: auto; 
   }
   
   #camera, #canvas {
@@ -202,8 +201,12 @@ body {
   }
   
   @media (max-width: 480px) {
+    .container {
+      height: calc(100vh - 60px); /* スクロールバーの高さを考慮 */
+    }
+  
     .controls {
-      bottom: 10px;
+      bottom: 70px; /* 下部の余白を増やす */
     }
   
     .slider-and-controls {
@@ -218,5 +221,15 @@ body {
   
     .camera-controls {
       justify-content: center;
+      margin-top: 10px; /* カメラコントロールの上部に余白を追加 */
+    }
+  
+    .drum-selector {
+      flex-wrap: wrap; /* ドラムセレクターを折り返し可能に */
+    }
+  
+    .part {
+      flex-basis: 48%; /* 2列に配置 */
+      margin-bottom: 5px;
     }
   }
