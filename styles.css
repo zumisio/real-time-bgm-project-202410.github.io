@@ -3,30 +3,31 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-}
-
-.container {
+  }
+  
+  .container {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 98vw;  
+    height: 98vh; 
     display: flex;
     flex-direction: column;
-}
-
-#camera, #canvas {
+    margin: auto; 
+  }
+  
+  #camera, #canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-#canvas {
+  }
+  
+  #canvas {
     z-index: 1;
-}
-
-.controls {
+  }
+  
+  .controls {
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -37,21 +38,21 @@ body {
     z-index: 2;
     width: 90%;
     max-width: 400px;
-}
-
-.drum-selector, .slider-and-controls {
+  }
+  
+  .drum-selector, .slider-and-controls {
     background-color: rgba(238, 238, 238, 0.7);
     border-radius: 25px;
     padding: 5px;
     width: 100%;
-}
-
-.drum-selector {
+  }
+  
+  .drum-selector {
     display: flex;
     justify-content: space-between;
-}
-
-.part {
+  }
+  
+  .part {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -63,28 +64,28 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 18px;
-}
-
-.part.selected {
+  }
+  
+  .part.selected {
     background-color: #FFFFFF;
     color: #007AFF;
-}
-
-.slider-and-controls {
+  }
+  
+  .slider-and-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 6px 6px;
-}
-
-.slider-container {
+  }
+  
+  .slider-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 78%;
-}
-
-.slider-track {
+  }
+  
+  .slider-track {
     display: flex;
     height: 4px;
     align-items: center;
@@ -93,9 +94,9 @@ body {
     border-radius: 100px;
     background: rgba(120, 120, 128, 0.16);
     margin: 0 12px;
-}
-
-.slider-fill {
+  }
+  
+  .slider-fill {
     position: absolute;
     left: 0;
     top: 0;
@@ -103,9 +104,9 @@ body {
     border-radius: 100px;
     background: #007AFF;
     pointer-events: none;
-}
-
-.slider {
+  }
+  
+  .slider {
     -webkit-appearance: none;
     width: 100%;
     height: 4px;
@@ -116,9 +117,9 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-}
-
-.slider-knob {
+  }
+  
+  .slider-knob {
     width: 24px;
     height: 24px;
     border-radius: 100px;
@@ -129,9 +130,9 @@ body {
     left: 0;
     transform: translate(-50%, -50%);
     pointer-events: none;
-}
-
-.icon {
+  }
+  
+  .icon {
     font-size: 17px;
     flex-shrink: 0;
     display: flex;
@@ -139,19 +140,19 @@ body {
     justify-content: center;
     width: 24px;
     height: 24px;
-}
-
-.turtle {
+  }
+  
+  .turtle {
     transform: scaleX(-1);
-}
-
-.camera-controls {
+  }
+  
+  .camera-controls {
     display: flex;
     gap: 8px;
     z-index: 2;
-}
-
-.icon-button {
+  }
+  
+  .icon-button {
     width: 36px;
     height: 36px;
     border-radius: 18px;
@@ -163,9 +164,9 @@ body {
     align-items: center;
     padding: 0;
     position: relative;
-}
-
-.icon-button::before {
+  }
+  
+  .icon-button::before {
     content: '';
     position: absolute;
     width: 28px;
@@ -175,48 +176,47 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.icon-button .icon {
+  }
+  
+  .icon-button .icon {
     position: relative;
     z-index: 1;
     font-size: 16px;
-}
-
-.icon-button:hover {
+  }
+  
+  .icon-button:hover {
     transform: scale(1.05);
     transition: transform 0.2s ease;
-}
-
-.icon-button:active {
+  }
+  
+  .icon-button:active {
     transform: scale(0.95);
-}
-
-.hidden {
+  }
+  
+  .hidden {
     display: none;
-}
-
-#detectionLabel {
+  }
+  
+  #detectionLabel {
     display: none;
-
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .controls {
-        bottom: 10px;
+      bottom: 10px;
     }
-
+  
     .slider-and-controls {
-        flex-direction: column;
-        align-items: stretch;
+      flex-direction: column;
+      align-items: stretch;
     }
-
+  
     .slider-container {
-        width: 100%;
-        margin-bottom: 8px;
+      width: 100%;
+      margin-bottom: 8px;
     }
-
+  
     .camera-controls {
-        justify-content: center;
+      justify-content: center;
     }
-}
+  }
