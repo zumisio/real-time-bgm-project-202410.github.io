@@ -68,12 +68,6 @@ async function loadModel() {
         console.error('Failed to load model:', error);
     }
 }
-//追加
-window.addEventListener('beforeunload', function(event) {
-    // Prevents unwanted window navigation or refresh on mobile
-    event.preventDefault();
-    event.returnValue = '';
-});
 
 async function startCamera() {
     try {
