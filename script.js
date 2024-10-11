@@ -74,25 +74,56 @@ async function startCamera() {
         stream = await navigator.mediaDevices.getUserMedia({
             video: { 
                 facingMode: facingMode,
-                width: { ideal: 1280 },
-                height: { ideal: 720 }
+                width: { ideal: 1920 },
+                height: { ideal: 1080 }
             }
         });
         video.srcObject = stream;
+        video.style.display = 'block';
+        canvas.style.display = 'block';
+
         video.onloadedmetadata = () => {
             video.play();
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            resizeCanvas();
             isDetecting = true;
             detectObjects();
         };
         startButton.classList.add('hidden');
         stopButton.classList.remove('hidden');
         switchButton.classList.remove('hidden');
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('orientationchange', resizeCanvas);
     } catch (err) {
         console.error('Failed to start camera:', err);
     }
 }
+
+function resizeCanvas() {
+    const videoAspectRatio = video.videoWidth / video.videoHeight;
+    const windowAspectRatio = window.innerWidth / window.innerHeight;
+
+    let canvasWidth, canvasHeight;
+
+    if (videoAspectRatio > windowAspectRatio) {
+        canvasHeight = window.innerHeight;
+        canvasWidth = canvasHeight * videoAspectRatio;
+    } else {
+        canvasWidth = window.innerWidth;
+        canvasHeight = canvasWidth / videoAspectRatio;
+    }
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+
+        // キャンバスの位置を調整してセンタリング
+        //canvas.style.left = `${(window.innerWidth - canvasWidth) / 2}px`;
+        //canvas.style.top = `${(window.innerHeight - canvasHeight) / 2}px`;
+}
+
+window.addEventListener('resize', resizeCanvas);
 
 function stopCamera() {
     if (stream) {
