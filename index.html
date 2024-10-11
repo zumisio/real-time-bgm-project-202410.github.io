@@ -3,57 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ドラムオブジェクト検出アプリ</title>
+    <title>オブジェクト検出ドラムマシン</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#007AFF">
 </head>
 <body>
     <div class="container">
-        <video id="camera" autoplay muted></video>
-        <canvas id="canvas"></canvas>
+        <div id="cameraContainer">
+            <video id="camera" autoplay muted></video>
+            <canvas id="canvas"></canvas>
+        </div>
         <div id="detectionLabel"></div>
         <div class="controls">
             <div class="drum-selector">
-                <div class="part selected" data-part="kick">kick</div>
+                <div class="part" data-part="kick">kick</div>
                 <div class="part" data-part="snare">snare</div>
                 <div class="part" data-part="hi-hat">hi-hat</div>
                 <div class="part" data-part="tom">tom</div>
             </div>
             <div class="slider-and-controls">
                 <div class="slider-container">
-                    <div class="icon">🐢</div>
+                    <div class="icon turtle">🐢</div>
                     <div class="slider-track">
                         <div class="slider-fill"></div>
                         <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
                         <div class="slider-knob"></div>
                     </div>
-                    <div class="icon">🐰</div>
+                    <div class="icon rabbit">🐰</div>
                 </div>
                 <div class="camera-controls">
                     <button id="startCamera" class="icon-button"><span class="icon">📸</span></button>
                     <button id="stopCamera" class="icon-button hidden"><span class="icon">⏹️</span></button>
-                    <button id="switchCamera" class="icon-button hidden"><span class="icon">🔄</span></button>
+                    <button id="switchCamera" class="icon-button"><span class="icon">🔄</span></button>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script>
     <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered:', registration);
-                    })
-                    .catch((error) => {
-                        console.log('Service Worker registration failed:', error);
-                    });
-            });
-        }
-    </script>
 </body>
 </html>
