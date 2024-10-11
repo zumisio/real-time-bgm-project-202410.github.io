@@ -228,6 +228,9 @@ async function startCamera() {
             }
         });
         video.srcObject = stream;
+        video.style.display = 'block'; // カメラ映像を表示
+        canvas.style.display = 'block'; // キャンバスを表示
+
         video.onloadedmetadata = () => {
             video.play();
             canvas.width = video.videoWidth;
@@ -248,6 +251,8 @@ function stopCamera() {
     if (stream) {
         stream.getTracks().forEach(track => track.stop());
         video.srcObject = null;
+        video.style.display = 'none'; // カメラ映像を非表示
+        canvas.style.display = 'none'; // キャンバスを非表示
         isDetecting = false;
         if (animationFrameId) {
             cancelAnimationFrame(animationFrameId);
